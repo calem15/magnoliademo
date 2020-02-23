@@ -1,2 +1,3 @@
 # magnoliademo
-Demo for magnolia env
+To deploy:
+ansible-playbook -i inventory/ec2 ${playbook.yml}
