@@ -1,0 +1,9 @@
+---
+- hosts: magnoliademo
+  become: yes
+  become_user: root
+  roles:
+    #- docker-ce
+    # - nginx
+    - node-exporter
+    # - mysql

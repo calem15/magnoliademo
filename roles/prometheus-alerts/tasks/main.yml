@@ -1,0 +1,16 @@
+- name: Put extra-alert-rules
+  become: yes
+  template: src=extra-alert.rules.yml dest=/data/prometheus/extra-alert.rules.yml
+
+- name: Fail task when the checking tool output prints FAILED
+  command: /bin/promtool check config /etc/prometheus/prometheus.yml
+  register: command_result
+  failed_when: "'FAILED' in command_result.stderr"
+
+- name: Get running prometheus2 processes
+  shell: "ps -ef | grep -v grep | grep -w prometheus | awk '{print $2}'"
+  register: running_processes
+
+- name: Reload running prometheus processes
+  shell: "kill -HUP {{ item }}"
+  with_items: "{{ running_processes.stdout_lines }}"

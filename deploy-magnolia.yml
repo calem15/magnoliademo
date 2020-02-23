@@ -1,0 +1,26 @@
+---
+- hosts: magnoliademo
+  become: yes
+  become_user: root
+  tasks:
+  - name: Installing configuration for magnolia mysql DB strings
+    template: src=magnolia/jackrabbit-bundle-mysql-search.xml dest=/data/magnolia/jackrabbit-bundle-mysql-search.xml owner=root group=root
+
+  - name: Installing configuration for magnolia default DB properties
+    template: src=magnolia/magnolia.properties dest=/data/magnolia/magnolia.properties owner=root group=root
+
+  - name: Deploying magnolia-cms
+    docker_container:
+      name: magnolia-demo-mysql
+      image: calem15/magnolia-demo:v3
+      restart_policy: always
+      state: started
+      pull: true
+      recreate: yes
+      published_ports:
+        - 8081:8080
+      volumes:
+        - /data/magnolia/jackrabbit-bundle-mysql-search.xml:/magnolia-6.1.4/apache-tomcat-9.0.10/webapps/magnoliaAuthor/WEB-INF/config/repo-conf/jackrabbit-bundle-mysql-search.xml
+        - /data/magnolia/magnolia.properties:/magnolia-6.1.4/apache-tomcat-9.0.10/webapps/magnoliaAuthor/WEB-INF/config/default/magnolia.properties
+      #  - /data/magnolia/jackrabbit-bundle-mysql-search-pub.xml:/magnolia-6.1.4/apache-tomcat-9.0.10/webapps/magnoliaPublic/WEB-INF/config/repo-conf/jackrabbit-bundle-mysql-search-pub.xml
+      #  - /data/magnolia/magnolia.properties.pub:/magnolia-6.1.4/apache-tomcat-9.0.10/webapps/magnoliaPublic/WEB-INF/config/default/magnolia.properties

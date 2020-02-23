@@ -1,0 +1,6 @@
+---
+- name: Installing mysql-server
+  apt: pkg=mysql-server update_cache=yes state=present
+  notify:
+    - reload systemd
+    - restart mysql
