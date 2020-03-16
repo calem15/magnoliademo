@@ -9,13 +9,16 @@
   - name: Installing configuration for magnolia default DB properties
     template: src=magnolia/magnolia.properties dest=/data/magnolia/magnolia.properties owner=root group=root
 
-  - name: Deploying magnolia-cms default
+  - name: Deploying magnolia-cms with mysql
     docker_container:
-      name: magnolia-demo-default
-      image: calem15/magnolia-demo:default
+      name: magnolia-demo-mysql
+      image: calem15/magnolia-demo:v4
       restart_policy: always
       state: started
       pull: true
       recreate: yes
       published_ports:
-        - 8280:8080
+        - 8081:8080
+      volumes:
+        - /data/magnolia/jackrabbit-bundle-mysql-search.xml:/magnolia-6.1.4/apache-tomcat-9.0.10/webapps/magnoliaAuthor/WEB-INF/config/repo-conf/jackrabbit-bundle-mysql-search.xml
+        - /data/magnolia/magnolia.properties:/magnolia-6.1.4/apache-tomcat-9.0.10/webapps/magnoliaAuthor/WEB-INF/config/default/magnolia.properties
