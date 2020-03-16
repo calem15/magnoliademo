@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:10-jdk
 WORKDIR /
 RUN wget -O magnolia-cms.zip "https://nexus.magnolia-cms.com/content/repositories/magnolia.public.releases//info/magnolia/bundle/magnolia-community-demo-bundle/6.1.4/magnolia-community-demo-bundle-6.1.4-tomcat-bundle.zip"
 RUN unzip magnolia-cms.zip
