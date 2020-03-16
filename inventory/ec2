@@ -1,4 +1,4 @@
-magnolia ansible_host=18.141.11.207
+magnolia ansible_host=54.169.114.196
 
 [magnoliademo]
 magnolia
