@@ -64,3 +64,11 @@ scrape_configs:
     
 #     static_configs:
 #          - targets: ['node-exporter:9100']
+  - job_name: "magnolia"
+    static_configs:
+      - targets:
+        - "172.30.0.78:8280"
+        - "172.30.0.78:8081"
+        labels:
+          env: "prod"
+          group: "magnolia"
