@@ -35,7 +35,7 @@
       <param name="dataSourceName" value="magnoliapub"/>
       <param name="schemaObjectPrefix" value="pm_${wsp.name}_" />
       <param name="driver" value="com.mysql.jdbc.Driver" />
-      <param name="url" value="jdbc:mysql://172.30.0.78:3306/magnolia_author" />
+      <param name="url" value="jdbc:mysql://172.30.0.78:3306/magnolia_public" />
       <param name="databaseType" value="mysql" />
       <param name="user" value="root" />
       <param name="password" value="thisisatestserver" />

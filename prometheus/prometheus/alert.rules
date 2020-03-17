@@ -20,3 +20,23 @@ groups:
     annotations:
       summary: "Instance {{ $labels.instance }} under high load"
       description: "{{ $labels.instance }} of job {{ $labels.job }} is under high load."
+
+- name: containers
+  rules:
+  - alert: magnolia_mysql_down
+    expr: absent(container_last_seen{name="magnolia-demo-mysql"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "magnolia-demo-mysql container is down"
+      description: "magnolia-demo-mysql container is down for more than 30 seconds."
+
+  - alert: magnolia_mysql_default_down
+    expr: absent(container_last_seen{name="magnolia-demo-default"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "magnolia-demo-default container is down"
+      description: "magnolia-demo-default container is down for more than 30 seconds."

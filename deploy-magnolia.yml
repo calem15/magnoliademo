@@ -3,11 +3,6 @@
   become: yes
   become_user: root
   tasks:
-  - name: Installing configuration for magnolia mysql DB strings
-    template: src=magnolia/jackrabbit-bundle-mysql-search.xml dest=/data/magnolia/jackrabbit-bundle-mysql-search.xml owner=root group=root
-
-  - name: Installing configuration for magnolia default DB properties
-    template: src=magnolia/magnolia.properties dest=/data/magnolia/magnolia.properties owner=root group=root
 
   - name: Deploying magnolia-cms default
     docker_container:

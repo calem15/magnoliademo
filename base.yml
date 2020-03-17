@@ -3,7 +3,7 @@
   become: yes
   become_user: root
   roles:
-    - docker-ce
+    # - docker-ce
     - nginx
-    - node-exporter
+    # - node-exporter
     # - mysql

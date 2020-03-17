@@ -12,7 +12,7 @@
   - name: Deploying magnolia-cms with mysql
     docker_container:
       name: magnolia-demo-mysql
-      image: calem15/magnolia-demo:v4
+      image: calem15/magnolia-demo:v3
       restart_policy: always
       state: started
       pull: true
